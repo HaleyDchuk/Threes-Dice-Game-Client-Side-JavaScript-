@@ -1,0 +1,61 @@
+h1{
+	color: red;
+	
+}
+
+/*#overlay{
+	display: hidden; 
+}
+
+#game{
+	display: hidden;
+}
+
+#diceValues{
+	display: inline; 
+	color: red;
+}*/
+
+.overlay{
+	display: none;
+}
+
+.hidden{
+	color: red;
+	display: none;
+
+}
+
+.show{
+	display: inline;
+	color: blue;
+	
+   
+   
+}
+
+p{
+	float: left;
+	color: black;
+	width: 40px;
+    border: 1px solid green;
+    padding: 25px;
+    margin: 25px;
+	
+}
+
+.closeButton{
+	float: none;
+}
+
+
+button{
+	float: none;
+}
+/*.numClass{
+	color: orange;
+	width: 300px;
+    border: 25px solid green;
+    padding: 25px;
+    margin: 25px;
+}*/
