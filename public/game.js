@@ -41,6 +41,12 @@
 // }
 
 document.addEventListener("DOMContentLoaded", function(event) {
+    
+    //your score element 
+	var yourScore = document.createElement("h3"); 
+	document.body.appendChild(yourScore); 
+    var keepingTrackScore = 0; 
+    
     var thisButton = document.getElementById("go"); 
 
 	thisButton.addEventListener('click', doThis); 
@@ -50,66 +56,186 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	var game = document.getElementById("game").className = "show"; 
 	var g = document.getElementById("game"); 
 	var x; 
-	var val = document.getElementById("diceValues").value; 
+	//var val = document.getElementById("diceValues").value; 
 
-	if(val === ""){
+	//if(val === ""){
 
 
 	for( x = 0; x < 5; x++){
-		var random = Math.floor(Math.random() * 6) + 1; 
+		
+		//var rand = diceRoll(); 
 		var para = document.createElement("p"); 
-		var node = document.createTextNode(random); 
-		para.appendChild(node); 
+		//para.setAttribute("class", "initialBox");  
+		//var node = document.createTextNode(" "); 
+		//para.appendChild(node); 
 		g.appendChild(para); 
 
-		
-
-		
-		
 	}
-}
 
 
-else{
-	var values = val.split(","); 
-	var x; 
-	for(x = 0; x < 5; x++){
+	var btn = document.createElement("button");   
+	btn.setAttribute("id", "startButton");  
 
-		if(values[x] !== undefined) {
-			var p1 = document.createElement("p"); 
-			var n1 = document.createTextNode(values[x]); 
-			p1.appendChild(n1); 
-			g.appendChild(p1); 
-		} else{
-			var random = Math.floor(Math.random() * 6) + 1;
-			var p1 = document.createElement("p"); 
-			var n1 = document.createTextNode(random); 
-			p1.appendChild(n1); 
-			g.appendChild(p1); 
-			}
-
-	}
-}
-
-
-
-
-	var btn = document.createElement("button");        
 	var t = document.createTextNode("START");       
 	btn.appendChild(t);                                
 	document.body.appendChild(btn); 
-	var btn2 = document.createElement("button");        
+	var btn2 = document.createElement("BUTTON");  
+	btn2.setAttribute("id", "rollButton");       
 	var t2 = document.createTextNode("ROLL");       
 	btn2.appendChild(t2);                                
 	document.body.appendChild(btn2); 
-	var btn3 = document.createElement("button");        
+	//ITS NOT FADED
+	btn2.disabled = true; 
+	//btn2.setAttribute("disabled", "disabled"); 
+	
+	var btn3 = document.createElement("button");
+	btn3.setAttribute("id", "pinButton");         
 	var t3 = document.createTextNode("PIN");       
 	btn3.appendChild(t3);                                
 	document.body.appendChild(btn3); 
+	//ITS NOT FADED BUT IT WONT WORK UNTIL SET TO FALSE
+	btn3.disabled = true; 
+
+
+
+
+
+	btn.addEventListener("click", onStart); 
+	function onStart(evt){
+		//var hideStartButton = document.getElementByClassName("startButton").className = "hidden"; 
+		btn.disabled = true; 
+		btn2.disabled = false; 
+		btn3.disabled = false;
+		var score = document.querySelector("h3"); 
+
+    	score.innerHTML = "Your Score: " + keepingTrackScore; 
+    	document.body.appendChild(yourScore); 
+
+    	var computerPlay = document.createElement("h4"); 
+		
+		var pinned = []; 
+		var x; 
+	 	var w; 
+	 	var count = 5; 
+	 	for(w = 0; w < 5; w++){
+	 		var rolls = [];
+			var changeThrees = []; 
+			
+		for(x = 0; x < count; x++){
+
+			var roll = diceRoll();
+			rolls.push(roll); 
+			
+		}
+
+		var t; 
+		for(t = 0; t < count; t++){
+			if(rolls[t] == 3){
+				changeThrees.push(0); 
+			} else{
+				changeThrees.push(rolls[t]); 
+			}
+		}
+		
+
+		var y; 
+		var lowest = changeThrees[0];
+		for(y=1; y <=count ; y++){
+
+			
+			if(changeThrees[y] < lowest){
+				lowest = changeThrees[y]; 
+				
+			}
+			
+		}
+		pinned.push(lowest); 
+		console.log("ROLLS"); 
+		console.log(rolls); 
+		console.log("CHANGED"); 
+		console.log(changeThrees); 
+		count = count -1; 
+		console.log("COUNT"); 
+		console.log(count); 
+	}
+		
+		
+		
+		var computerScore = 0; 
+		var m; 
+		for(m = 0; m < 5; m++){
+			var thisNumber = pinned[m]; 
+			computerScore += thisNumber; 
+		}
+		var pinnedWithThree = []; 
+		var r; 
+		for(r = 0; r < 5; r++){
+			var thisNum = pinned[r];
+			if(thisNum == 0){
+				pinnedWithThree.push(3); 
+			} else{
+				pinnedWithThree.push(pinned[r]); 
+			}
+		}
+
+		var scoreString = "Computer Score: "; 
+		var u; 
+		for(u = 0; u < 5; u++){
+			if(pinnedWithThree[u] == 3){
+				scoreString += '  3(0) + '; 
+			} else{
+				scoreString += pinnedWithThree[u] + ' +'; 
+			}
+		}
+
+		//get rid of last + sign 
+		scoreString += " = " + computerScore; 
+
+		
+		var compScore = document.createTextNode(scoreString); 
+ 		computerPlay.appendChild(compScore); 
+		document.body.appendChild(computerPlay); 
+
+		console.log("LOWEST"); 
+		console.log(lowest); 
+		console.log("PINNED"); 
+		console.log(pinned); 
+		console.log("PINNED WITH 3"); 
+		console.log(pinnedWithThree); 
+
 	
-	//why doesnt this work 
-	//var num = document.querySelector('p').className = numClass; 
-	
+	 }
+	 
+	 btn2.addEventListener("click", onRoll);
+	 function onRoll(evt){
+	 		var val = document.getElementById("diceValues").value; 
+		var values = val.split(","); 
+		var x; 
+		for(x = 0; x < 5; x++){
+			var paragraph = document.querySelectorAll("p")[x]; 
+			console.log(x); 
+			if(values[x] === undefined) {
+			
+			paragraph.innerHTML = diceRoll(); 
+			
+		} else{
+			
+			paragraph.innerHTML = values[x]; 
+			}
+
+		}
+
+	}
+
+}
+
+
+
+
+function diceRoll(){
+	var val = document.getElementById("diceValues").value; 
+	var random = Math.floor(Math.random() * 6) + 1;
+	return random; 
 }
 
     console.log("DOM fully loaded and parsed");
