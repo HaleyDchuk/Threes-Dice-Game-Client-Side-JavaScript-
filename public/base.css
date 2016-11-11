@@ -74,5 +74,51 @@ button{
 	display: none; 
 }*/
 
+.newParaClass{
+	font-size: 50px; 
+	color: pink;
+}
+
+.originalPara{
+	color: green; 
+	font-size: 30px; 
+}
+
+.clickPara{
+	color: purple;
+	font-size: 50px; 
+}
+
+.hoverPara{
+	background: grey; 
+}
+
+.pinnedDice{
+	background: #2F3638;
+}
 
 
+#playerScore{
+	color: blue; 
+}
+
+#computerScoree{
+	color: red; 
+}
+
+
+#tiedScore{
+	color: #4775d1;
+
+}
+
+#winScore{
+	color: #ff3399;
+
+}
+
+#looseScore{
+	color: #669900;
+
+
+}
