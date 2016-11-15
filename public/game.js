@@ -114,7 +114,7 @@ function diceRoll(){
 		for(x = 0; x < count; x++){
 			console.log("values count again "); 
 			console.log(values[countAgain]); 
-			rolls[0] = diceRoll(); 
+			//rolls[0] = diceRoll(); 
 			if(values[countAgain] == undefined){
 				var roll = diceRoll();
 				//rolls.push(roll); 
@@ -131,6 +131,7 @@ function diceRoll(){
 
 			
 			countAgain ++;
+
 		}
 
 		var t; 
@@ -216,31 +217,35 @@ function diceRoll(){
 	 btn2.addEventListener("click", onRoll);
 	 //WHEN ROLL BUTTON IS CLICKED, DO THIS 
 	 function onRoll(evt){
-	 	//var val = document.getElementById("diceValues").value; 
-		//var values = val.split(","); 
+	 	var val = document.getElementById("diceValues").value; 
+		var values = val.split(","); 
 		var x; 
 		var i; 
 		
 		console.log("PINNED"); 
-		console.log(pinned); 
+		console.log(pinned);
+		var index = 15;  
 		for(x = 0; x < 5; x++){
 			var paragraph = document.querySelectorAll("p")[x]; 
 			//paragraph.setAttribute("class", "originalPara"); 
 			console.log(x); 
 			if(pinned[x] == false){
 				paragraph.setAttribute("class", "originalPara"); 
-				//if(values[x] === undefined) {
+				if(values[index] === undefined) {
 			
 					paragraph.innerHTML = diceRoll(); 
 			
-				//} 
-			// 	else{
+				} 
+			 	else{
 			
-			// 		paragraph.innerHTML = values[x]; 
-			// }
+			 		paragraph.innerHTML = values[index]; 
+			 		index ++; 
+			 }
 
 
-			} else{
+			} 
+
+			else{
 				paragraph.setAttribute("class", "pinnedDice"); 
 			}
 			
@@ -360,10 +365,6 @@ var t;
 			console.log("GAME IS OVER"); 
 			var getComputerScore = cScore; 
 			var getUserScore = keepingTrackScore; 
-			console.log("computer score"); 
-			console.log(cScore); 
-			console.log("user score"); 
-			console.log(keepingTrackScore); 
 			var winner = getComputerScore; 
 			var computerWon = true;  
 			var scoreRelatedString = " "; 
@@ -379,8 +380,6 @@ var t;
 			if(winner > getUserScore){
 				winner = getUserScore; 
 				computerWon = false; 
-
-
 			}
 			if(computerWon == true){
 
@@ -399,11 +398,12 @@ var t;
 				document.body.appendChild(win);
 				console.log("WINNER"); 
 				console.log(winner); 
-
 			}
-			
-
-			
+			var btn4 = document.createElement("button");   
+			//btn4.setAttribute("id", "startButton");  
+			var t4 = document.createTextNode("RESET");       
+			btn4.appendChild(t4);                                
+			document.body.appendChild(btn4); 
 
 
 	}

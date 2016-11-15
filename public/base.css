@@ -90,11 +90,13 @@ button{
 }
 
 .hoverPara{
-	background: grey; 
+	background: #26734d; 
+	color: white;
 }
 
 .pinnedDice{
 	background: #2F3638;
+	color: white;
 }
 
 
