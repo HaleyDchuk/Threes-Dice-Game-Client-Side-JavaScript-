@@ -411,7 +411,7 @@ for(i = 0; i < 5; i++){
 
 		//CANT GET THIS TO WORK WITHOUT RESETTING DIE 
 		if(countingPin == countingPinAfter){
-			console.log("YOU DIDNT PIN ANYTHING"); 
+			 console.log("YOU DIDNT PIN ANYTHING"); 
 			//alert('you didnt pin anything'); 
 
 
