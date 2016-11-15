@@ -13,7 +13,7 @@ function diceRoll(){
 	var pinned = []; 
 	var clicked = []; 
 	var cScore; 
-	var pinnedYet = 0; 
+	//var pinnedYet = 0; 
 		
 		for(i = 0; i < 5; i++){
 			pinned.push(false); 
@@ -490,11 +490,24 @@ var t;
 				console.log("WINNER"); 
 				console.log(winner); 
 			}
-			var btn4 = document.createElement("button");   
-			//btn4.setAttribute("id", "startButton");  
-			var t4 = document.createTextNode("RESET");       
-			btn4.appendChild(t4);                                
-			document.body.appendChild(btn4); 
+			// var btn4 = document.createElement("button");   
+		  
+			// var t4 = document.createTextNode("RESET");       
+			// btn4.appendChild(t4);                                
+			// document.body.appendChild(btn4); 
+			// btn4.addEventListener("click", resetGame); 
+			// function resetGame(event){
+			// 	var x; 
+			// 	for(x = 0; x < 5; x++){
+			// 	var paragraph = document.querySelectorAll("p")[x]; 
+			// 	paragraph.innerHTML = " "; 
+
+			// 	}
+				
+			// 	keepingTrackScore = 0; 
+			// 	computerScore = 0; 
+			// 	btn.disabled = false; 
+			// }
 
 
 	}
