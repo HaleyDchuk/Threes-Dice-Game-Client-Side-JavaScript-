@@ -114,7 +114,10 @@ function diceRoll(){
 		for(x = 0; x < count; x++){
 			console.log("values count again "); 
 			console.log(values[countAgain]); 
-			//rolls[0] = diceRoll(); 
+			//3rolls[0] = diceRoll(); 
+			// if(values[0] == undefined){
+			// 	rolls[0] = diceRoll(); 
+			// }
 			if(values[countAgain] == undefined){
 				var roll = diceRoll();
 				//rolls.push(roll); 
@@ -170,8 +173,13 @@ function diceRoll(){
 		
 		var computerScore = 0; 
 		var m; 
+		console.log("CS SCORE"); 
+		console.log(computerScore); 
+
 		for(m = 0; m < 5; m++){
 			var thisNumber = pin[m]; 
+			console.log("this number before parse"); 
+			console.log(thisNumber); 
 			var parseThisNum = parseInt(thisNumber); 
 			computerScore += parseThisNum; 
 		}
@@ -210,7 +218,8 @@ function diceRoll(){
 		console.log(pin); 
 		console.log("PINNED WITH 3"); 
 		console.log(pinnedWithThree); 
-
+		console.log("COMPUTER SCORE: "); 
+		console.log(computerScore); 
 	
 	 }
 	 
