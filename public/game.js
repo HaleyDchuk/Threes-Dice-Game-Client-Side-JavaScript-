@@ -118,7 +118,15 @@ function diceRoll(){
 			// if(values[0] == undefined){
 			// 	rolls[0] = diceRoll(); 
 			// }
-			if(values[countAgain] == undefined){
+			console.log("VALUES LENGTH"); 
+			console.log(values.length); 
+			if(values[x] == ""){
+				var roll = diceRoll();
+				//rolls.push(roll); 
+				rolls[x] = roll; 
+
+			}
+			else if(values[countAgain] == undefined){
 				var roll = diceRoll();
 				//rolls.push(roll); 
 				rolls[x] = roll; 
