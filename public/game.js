@@ -13,6 +13,7 @@ function diceRoll(){
 	var pinned = []; 
 	var clicked = []; 
 	var cScore; 
+	var pinnedYet = 0; 
 		
 		for(i = 0; i < 5; i++){
 			pinned.push(false); 
@@ -43,7 +44,7 @@ function diceRoll(){
 		
 		//var rand = diceRoll(); 
 		var para = document.createElement("p"); 
-		//para.setAttribute("class", "initialBox");  
+		para.setAttribute("class", "emptyDice");  
 		//var node = document.createTextNode(" "); 
 		//para.appendChild(node); 
 		g.appendChild(para); 
@@ -317,9 +318,31 @@ for(i = 0; i < 5; i++){
 			event.target.setAttribute("class", "clickPara");
 			gettingClass = event.target.getAttribute("class"); 
 			btn3.disabled = false;  
+
 		} else if(gettingClass == "clickPara"){
 			event.target.setAttribute("class", "originalPara"); 
 			gettingClass = event.target.getAttribute("class"); 
+		} else if(gettingClass == "emptyDice"){
+			//alert("cannot select dice yet it hasnt been rolled"); 
+			
+			var displayElement = document.getElementById("error-message"); 
+			var message = displayElement.querySelector("p"); 
+			message.setAttribute("class", "displayMessage"); 
+			message.innerHTML = "Error. Cannot select a die before they are rolled!!"; 
+			var element = document.getElementById("error-message").style.display = "inline";
+
+			var close = document.getElementById("error-message"); 
+			var cButton = close.querySelector("button");
+			cButton.addEventListener("click", okGotIt);  
+			console.log(cButton); 
+			//disable start button 
+			btn.disabled = true; 
+			function okGotIt(event){
+				var error = document.getElementById("error-message").style.display = "none"; 
+				btn.disabled = false; 
+			}
+
+
 		}
 		console.log("GETTING CLASS"); 
 		console.log(gettingClass); 
@@ -328,7 +351,19 @@ for(i = 0; i < 5; i++){
 	} 
 
 	btn3.addEventListener("click", onPin); 
+	
+			
+	
 	function onPin(event){
+
+		var p; 
+		var countingPin = 0; 
+		for(p = 0; p < 5; p++){
+			if(pinned[p] == true){
+				countingPin ++; 
+			}
+		}
+		
 		//btn3.disabled = false; 
 		btn2.disabled = true; 
 		var x; 
@@ -336,6 +371,7 @@ for(i = 0; i < 5; i++){
 			var paragraph = document.querySelectorAll("p")[x]; 
 			var gettingClickedPara = paragraph.getAttribute("class")
 			if(gettingClickedPara == "clickPara"){
+				//pinnedYet ++; 
 				pinned[x] = true; 
 				paragraph.setAttribute("class", "pinnedDice"); 
 				console.log("THIS IS INDIVIDUAL PARAGRAPH"); 
@@ -353,9 +389,9 @@ for(i = 0; i < 5; i++){
 			if(pinned[x] == false){
 				paragraph.innerHTML = " "; 
 			}
-			// else{
-			// 	paragraph.innerHTML = " "; 
-			// }
+	
+			
+		
 
 		}
 		btn2.disabled = false; 
@@ -365,12 +401,49 @@ for(i = 0; i < 5; i++){
     	score.innerHTML = "Your Score: " + keepingTrackScore; 
     	document.body.appendChild(yourScore); 
 
-		//alert("PIN HAS BEEN PRESSED"); 
+    	var a; 
+		var countingPinAfter = 0; 
+		for(a = 0; a < 5; a++){
+			if(pinned[a] == true){
+				countingPinAfter ++; 
+			}
+		}
+
+		//CANT GET THIS TO WORK WITHOUT RESETTING DIE 
+		if(countingPin == countingPinAfter){
+			console.log("YOU DIDNT PIN ANYTHING"); 
+			//alert('you didnt pin anything'); 
+
+
+			var displayElement = document.getElementById("error-message"); 
+			var message = displayElement.querySelector("p"); 
+			message.setAttribute("class", "displayMessage"); 
+			message.innerHTML = "Error. You didnt pin anything"; 
+			var element = document.getElementById("error-message").style.display = "inline";
+
+			var close = document.getElementById("error-message"); 
+			var cButton = close.querySelector("button");
+			cButton.addEventListener("click", okGot);  
+			console.log(cButton); 
+			//disable start button 
+			btn2.disabled = true; 
+			btn3.disabled = true; 
+			function okGot(event){
+				var error = document.getElementById("error-message").style.display = "none"; 
+				btn3.disabled = false; 
+				btn2.disabled = false; 
+			}
+		}
+
+		
 
 console.log("PINNED AFTER CLICK"); 
 console.log(pinned); 
 console.log("KEEPING TRACK SCORE"); 
 console.log(keepingTrackScore); 
+
+
+			
 
 
 var t; 
@@ -379,6 +452,7 @@ var t;
 		if(pinned[0] == true && pinned[1] == true && pinned[2] == true && pinned[3] == true && pinned[4] == true){
 			btn2.disabled = true; 
 			btn3.disabled = true; 
+
 			console.log("GAME IS OVER"); 
 			var getComputerScore = cScore; 
 			var getUserScore = keepingTrackScore; 

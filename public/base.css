@@ -18,6 +18,12 @@ h1{
 
 .overlay{
 	display: none;
+	float: left;
+	color: black;
+	width: 90px;
+    border: 1px solid green;
+    padding: 25px;
+    margin: 25px;
 }
 
 .hidden{
@@ -42,6 +48,17 @@ p{
 	
 }
 
+.emptyDice{
+
+	float: left;
+	color: black;
+	width: 30px;
+    border: 1px solid purple;
+    padding: 25px;
+    margin: 25px;
+
+}
+
 .closeButton{
 	float: none;
 }
@@ -63,11 +80,11 @@ button{
 }
 
 #rollButton{
-	color: purple;
+	/*color: purple;*/
 }
 
 #pinButton{
-	color: green;
+	/*color: green;*/
 }
 
 /*.initialBox{
@@ -122,5 +139,26 @@ button{
 #looseScore{
 	color: #669900;
 
+}
 
+
+
+.displayOverlay{
+	display: inline;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+}
+
+.displayCloseButton{
+	display: inline;
+}
+
+
+
+.displayMessage{
+	float: none;
+	display: inline;
+	border: none; 
+	color: red;
 }
